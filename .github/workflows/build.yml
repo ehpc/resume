@@ -1,36 +1,63 @@
-name: Build multilingual resume
+name: Build & Publish Resumes
 
 on:
   push:
     paths:
       - '**.tex'
-      - '.github/workflows/build.yml'
+      - '.github/workflows/build-resume.yml'
       - 'fonts/**'
   workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-resume
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        resumeLang: [en, ru, fr]
     steps:
       - uses: actions/checkout@v4
 
       - name: Install TeX Live + LuaLaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-luatex texlive-latex-recommended texlive-latex-extra texlive-xetex texlive-fonts-recommended
+          sudo apt-get install -y \
+            texlive-luatex texlive-latex-recommended texlive-latex-extra \
+            texlive-xetex texlive-fonts-recommended
 
-      - name: Build PDF (${{ matrix.resumeLang }})
+      - name: Build PDFs (EN, RU, FR)
         run: |
-          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\resumeLang{${{ matrix.resumeLang }}}\input{resume.tex}"
-          # Run twice for stable refs
-          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\resumeLang{${{ matrix.resumeLang }}}\input{resume.tex}"
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="Eugene-Maslovich-resume-en" '\def\resumeLang{en}\input{resume.tex}'
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="Evgenii-Maslovich-resume-ru" '\def\resumeLang{ru}\input{resume.tex}'
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="Eugene-Maslovitch-resume-fr" '\def\resumeLang{fr}\input{resume.tex}'
 
-      - name: Upload PDFs
+      # Optional: keep as build artifact too (handy for debugging)
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: resumes
           path: |
-            resume-*.pdf
+            Eugene-Maslovich-resume-en.pdf
+            Evgenii-Maslovich-resume-ru.pdf
+            Eugene-Maslovitch-resume-fr.pdf
+
+      - name: Publish to single "latest" release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: resume-latest
+          name: Latest Resume PDFs
+          body: |
+            Auto-updated PDFs from CI.
+            - EN: Eugene-Maslovich-resume-en.pdf
+            - RU: Evgenii-Maslovich-resume-ru.pdf
+            - FR: Eugene-Maslovitch-resume-fr.pdf
+          artifacts: |
+            Eugene-Maslovich-resume-en.pdf,
+            Evgenii-Maslovich-resume-ru.pdf,
+            Eugene-Maslovitch-resume-fr.pdf
+          allowUpdates: true
+          replacesArtifacts: true
+          makeLatest: true
