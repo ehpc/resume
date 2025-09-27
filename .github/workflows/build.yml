@@ -59,7 +59,7 @@ jobs:
       - name: Publish to single "latest" release
         uses: ncipollo/release-action@v1
         with:
-          tag: resume-latest
+          tag: latest
           name: Latest Resume PDFs
           body: |
             Auto-updated PDFs from CI.
