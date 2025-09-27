@@ -15,7 +15,7 @@
 
 	% Lang
 	% Pass via CLI: lualatex "\def\resumeLang{en}\input{main.tex}"
-	\providecommand{\resumeLang}{ru}
+	\providecommand{\resumeLang}{en}
 
 	\IfStrEq{\resumeLang}{en}{\setdefaultlanguage{english}}{}
 	\IfStrEq{\resumeLang}{ru}{\setdefaultlanguage{russian}\setotherlanguage{english}}{}
@@ -105,16 +105,16 @@
 	% Experience
 	\section{\strSectionExperience}
 
-	\header{Yandex LLC}{2021 -- 2024}
+	\header{\strHeaderYandex}{2021 -- 2024}
 	\subheader{\strRoleYandex}{\strLocYandex}
 	\begin{itemize}
 		\item \strYandexBOne
 		\item \strYandexBTwo
 		\item \strYandexBThree
 	\end{itemize}
-	\tech{TypeScript, React, Feature-Sliced Design, Storybook, Python, Django}
+	\tech{TypeScript, React, Feature-Sliced Design, Storybook, Python, Django, PostgreSQL}
 
-	\header{Elbrus Coding Bootcamp}{2019 -- 2021}
+	\header{\strHeaderBootcamp}{2019 -- 2021}
 	\subheader{\strRoleBootcamp}{\strLocBootcamp}
 	\begin{itemize}
 		\item \strBootcampBOne
@@ -122,7 +122,7 @@
 	\end{itemize}
 	\tech{TypeScript, React, MUI, Node.js, MongoDB, Prisma, PostgreSQL}
 
-	\header{Financial Information Systems}{2013 -- 2019}
+	\header{\strHeaderFinancial}{2013 -- 2019}
 	\subheader{\strRoleFinancial}{\strLocFinancial}
 	\begin{itemize}
 		\item \strFinancialBOne
@@ -131,14 +131,14 @@
 	\end{itemize}
 	\tech{JavaScript, PHP, XSLT, Go, C\#, .NET, Oracle DBMS}
 
-	\header{8 Points}{2012 -- 2013}
+	\header{\strHeaderEightPoints}{2012 -- 2013}
 	\subheader{\strRoleEightPoints}{\strLocNovosibirsk}
 	\begin{itemize}
 		\item \strEightPointsBOne
 	\end{itemize}
 	\tech{JavaScript, PHP, Symfony, MySQL}
 
-	\header{Sibwaypro}{2010 -- 2012}
+	\header{\strHeaderSibwaypro}{2010 -- 2012}
 	\subheader{\strRoleSibwaypro}{\strLocNovosibirsk}
 	\begin{itemize}
 		\item \strSibwayproBOne
@@ -148,12 +148,12 @@
 	% Education
 	\section{\strSectionEducation}
 
-	\header{Siberian State University of Telecommunications and Informatics}{2009}
+	\header{\strHeaderUniversity}{2009}
 	\subheader{\strEducationDegree}{\strLocNovosibirsk}
 
 	% Skills
 	\section{\strSectionSkillsInterests}
-	\simplelist{\strLabelProgrammingLanguages}{TypeScript, Rust, Python, Go, Clojure, Lisp}
+	\simplelist{\strLabelProgrammingLanguages}{TypeScript, Rust, Python, Go, Clojure, Lisp, Haskell}
 	\simplelist{\strLabelTech}{WASM, Kubernetes, NixOS, Unity, PostgreSQL, Redis, MongoDB}
 	\simplelist{\strLabelSpokenLanguages}{\strSpokenLanguagesList}
 	\simplelist{\strLabelInterests}{\strInterestsList}

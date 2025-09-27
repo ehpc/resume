@@ -24,9 +24,9 @@ jobs:
 
       - name: Build PDF (${{ matrix.resumeLang }})
         run: |
-          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\lang{${{ matrix.resumeLang }}}\input{resume.tex}"
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\resumeLang{${{ matrix.resumeLang }}}\input{resume.tex}"
           # Run twice for stable refs
-          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\lang{${{ matrix.resumeLang }}}\input{resume.tex}"
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\resumeLang{${{ matrix.resumeLang }}}\input{resume.tex}"
 
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
