@@ -1,0 +1,36 @@
+name: Build multilingual resume
+
+on:
+  push:
+    paths:
+      - '**.tex'
+      - '.github/workflows/build.yml'
+      - 'fonts/**'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        resumeLang: [en, ru, fr]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live + LuaLaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-luatex texlive-latex-recommended texlive-latex-extra texlive-xetex texlive-fonts-recommended
+
+      - name: Build PDF (${{ matrix.resumeLang }})
+        run: |
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\lang{${{ matrix.resumeLang }}}\input{resume.tex}"
+          # Run twice for stable refs
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="resume-${{ matrix.resumeLang }}" "\def\lang{${{ matrix.resumeLang }}}\input{resume.tex}"
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: resumes
+          path: |
+            resume-*.pdf
