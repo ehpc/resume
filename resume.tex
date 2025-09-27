@@ -1,92 +1,92 @@
 \documentclass[11pt,a4paper]{article}
 
-	% Packages
-	\usepackage[dvipsnames]{xcolor}
-	\usepackage{fontspec}
-	\usepackage[final]{microtype}
-	\usepackage[hmargin=1.2cm, vmargin=1.2cm]{geometry}
-	\usepackage{titlesec}
-	\usepackage{parskip}
-	\usepackage{enumitem}
-	\usepackage{polyglossia}
-	\usepackage[unicode]{hyperref}
-	\usepackage{graphicx}
-	\usepackage{xstring}
+% Packages
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fontspec}
+\usepackage[final]{microtype}
+\usepackage[hmargin=1.2cm, vmargin=1.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{polyglossia}
+\usepackage[unicode]{hyperref}
+\usepackage{graphicx}
+\usepackage{xstring}
 
-	% Lang
-	% Pass via CLI: lualatex "\def\resumeLang{en}\input{main.tex}"
-	\providecommand{\resumeLang}{en}
+% Lang
+% Pass via CLI: lualatex "\def\resumeLang{en}\input{main.tex}"
+\providecommand{\resumeLang}{en}
 
-	\IfStrEq{\resumeLang}{en}{\setdefaultlanguage{english}}{}
-	\IfStrEq{\resumeLang}{ru}{\setdefaultlanguage{russian}\setotherlanguage{english}}{}
-	\IfStrEq{\resumeLang}{fr}{\setdefaultlanguage{french}\setotherlanguage{english}}{}
+\IfStrEq{\resumeLang}{en}{\setdefaultlanguage{english}}{}
+\IfStrEq{\resumeLang}{ru}{\setdefaultlanguage{russian}\setotherlanguage{english}}{}
+\IfStrEq{\resumeLang}{fr}{\setdefaultlanguage{french}\setotherlanguage{english}}{}
 
-	\IfStrEq{\resumeLang}{en}{\input{strings-en}}{}
-	\IfStrEq{\resumeLang}{ru}{\input{strings-ru}}{}
-	\IfStrEq{\resumeLang}{fr}{\input{strings-fr}}{}
+\IfStrEq{\resumeLang}{en}{\input{strings-en}}{}
+\IfStrEq{\resumeLang}{ru}{\input{strings-ru}}{}
+\IfStrEq{\resumeLang}{fr}{\input{strings-fr}}{}
 
-	% Fonts
-	\newcommand{\wghtLight}{RawFeature={+axis={wght=200}}}
-	\newcommand{\wghtRegular}{RawFeature={+axis={wght=250}}}
-	\newcommand{\wghtSemibold}{RawFeature={+axis={wght=350}}}
-	\newcommand{\wghtBold}{RawFeature={+axis={wght=500}}}
-	\setmainfont{Montserrat-VariableFont_wght.ttf}[
-		Path = ./fonts/,
-		Renderer=HarfBuzz,
-		UprightFeatures = {\wghtRegular},
-		FontFace = {lf}{n}{Font=*, \wghtLight},
-		BoldFont = *,
-		BoldFeatures = {\wghtBold},
-		FontFace = {sb}{n}{Font=*, \wghtSemibold},
-		ItalicFont = Montserrat-Italic-VariableFont_wght.ttf,
-		ItalicFeatures = {\wghtRegular},
-		BoldItalicFont = Montserrat-Italic-VariableFont_wght.ttf,
-		BoldItalicFeatures = {\wghtBold}
-	]
+% Fonts
+\newcommand{\wghtLight}{RawFeature={+axis={wght=200}}}
+\newcommand{\wghtRegular}{RawFeature={+axis={wght=250}}}
+\newcommand{\wghtSemibold}{RawFeature={+axis={wght=350}}}
+\newcommand{\wghtBold}{RawFeature={+axis={wght=500}}}
+\setmainfont{Montserrat-VariableFont_wght.ttf}[
+	Path = ./fonts/,
+	Renderer=HarfBuzz,
+	UprightFeatures = {\wghtRegular},
+	FontFace = {lf}{n}{Font=*, \wghtLight},
+	BoldFont = *,
+	BoldFeatures = {\wghtBold},
+	FontFace = {sb}{n}{Font=*, \wghtSemibold},
+	ItalicFont = Montserrat-Italic-VariableFont_wght.ttf,
+	ItalicFeatures = {\wghtRegular},
+	BoldItalicFont = Montserrat-Italic-VariableFont_wght.ttf,
+	BoldItalicFeatures = {\wghtBold}
+]
 
-	% Page
-	\pagestyle{empty}
+% Page
+\pagestyle{empty}
 
-	% Links
-	\hypersetup{
-		colorlinks=true,
-		urlcolor=Black,
-		linkcolor=black,
-		citecolor=black,
-		pdfauthor={\strName},
-		pdftitle={Resume - \strName}
-	}
+% Links
+\hypersetup{
+	colorlinks=true,
+	urlcolor=Black,
+	linkcolor=black,
+	citecolor=black,
+	pdfauthor={\strName},
+	pdftitle={Resume - \strName}
+}
 
-	% Lists
-	\setlist{nosep,leftmargin=*,before=\small,itemsep=0.3em,topsep=0.3em}
-	\renewcommand\labelitemi{\raisebox{-0.6ex}{\Huge\textbullet}}
+% Lists
+\setlist{nosep,leftmargin=*,before=\small,itemsep=0.3em,topsep=0.3em}
+\renewcommand\labelitemi{\raisebox{-0.6ex}{\Huge\textbullet}}
 
-	% Separators
-	\newcommand{\hseparator}
-	{\  {\color{Gray}|} \ }
+% Separators
+\newcommand{\hseparator}
+{\  {\color{Gray}|} \ }
 
-	% Section formatting
-	\titleformat{\section}
-	{\Large}
-	{}{0em}{}
-	[\color{Gray}\titlerule]
-	
-	\titlespacing*{\section}{0pt}{1em}{1em}
+% Section formatting
+\titleformat{\section}
+{\Large}
+{}{0em}{}
+[\color{Gray}\titlerule]
+
+\titlespacing*{\section}{0pt}{1em}{1em}
 
 
-	% Header inside secrion
-	\newcommand{\header}[2]
-	{\textbf{#1}\hfill\small{#2}\normalsize\par\vspace{-0.4em}}
+% Header inside section
+\newcommand{\header}[2]
+{\textbf{#1}\hfill\small{#2}\normalsize\par\vspace{-0.4em}}
 
-	% Subheader inside section
-	\newcommand{\subheader}[2]
-	{\small\textit{#1}\hfill\textit{#2}\normalsize\vspace{-0.4em}}
+% Subheader inside section
+\newcommand{\subheader}[2]
+{\small\textit{#1}\hfill\textit{#2}\normalsize\vspace{-0.4em}}
 
-	\newcommand{\tech}[1]
-	{{\vspace{-0.6em}\footnotesize\fontseries{sb}\selectfont Tech: \fontseries{lf}\selectfont{#1}\normalsize}}
+\newcommand{\tech}[1]
+{{\vspace{-0.6em}\footnotesize\fontseries{sb}\selectfont Tech: \fontseries{lf}\selectfont{#1}\normalsize}}
 
-	\newcommand{\simplelist}[2]
-	{\small\textbf{#1:} {#2}\normalsize\par\vspace{-0.4em}}
+\newcommand{\simplelist}[2]
+{\small\textbf{#1:} {#2}\normalsize\par\vspace{-0.4em}}
 
 \begin{document}
 
