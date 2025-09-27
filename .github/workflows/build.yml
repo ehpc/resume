@@ -50,6 +50,10 @@ jobs:
             Evgenii-Maslovich-resume-ru.pdf
             Eugene-Maslovitch-resume-fr.pdf
 
+      - name: Compute timestamp
+        id: ts
+        run: echo "ts=$(date -u '+%Y-%m-%d %H:%M:%SZ')" >> $GITHUB_OUTPUT
+
       - name: Publish to single "latest" release
         uses: ncipollo/release-action@v1
         with:
@@ -57,6 +61,7 @@ jobs:
           name: Latest Resume PDFs
           body: |
             Auto-updated PDFs from CI.
+            Last build (UTC): ${{ steps.ts.outputs.ts }}
             - EN: Eugene-Maslovich-resume-en.pdf
             - RU: Evgenii-Maslovich-resume-ru.pdf
             - FR: Eugene-Maslovitch-resume-fr.pdf
