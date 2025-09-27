@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '**.tex'
-      - '.github/workflows/build-resume.yml'
+      - '.github/workflows/build.yml'
       - 'fonts/**'
   workflow_dispatch: {}
 
