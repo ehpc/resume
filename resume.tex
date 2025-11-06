@@ -16,6 +16,10 @@
 % Lang
 % Pass via CLI: lualatex "\def\resumeLang{en}\input{main.tex}"
 \providecommand{\resumeLang}{en}
+% Wider spacing
+\providecommand{\customSpacing}{default}
+% Exclude tutoring
+\providecommand{\noTutor}{false}
 
 \IfStrEq{\resumeLang}{en}{\setdefaultlanguage{english}}{}
 \IfStrEq{\resumeLang}{ru}{\setdefaultlanguage{russian}\setotherlanguage{english}}{}
@@ -58,7 +62,8 @@
 }
 
 % Lists
-\setlist{nosep,leftmargin=*,before=\small,itemsep=0.3em,topsep=0.3em}
+\IfStrEq{\customSpacing}{wide}{\def\itemStep{0.6em}}{\def\itemStep{0.3em}}
+\setlist{nosep,leftmargin=*,before=\small,itemsep=\itemStep,topsep=\itemStep}
 \renewcommand\labelitemi{\raisebox{-0.6ex}{\Huge\textbullet}}
 
 % Separators
@@ -71,7 +76,8 @@
 {}{0em}{}
 [\color{Gray}\titlerule]
 
-\titlespacing*{\section}{0pt}{1em}{1em}
+\IfStrEq{\customSpacing}{wide}{\def\customTitleSpacing{2em}}{\def\customTitleSpacing{1em}}
+\titlespacing*{\section}{0pt}{\customTitleSpacing}{\customTitleSpacing}
 
 
 % Header inside section
@@ -114,6 +120,7 @@
 	\end{itemize}
 	\tech{TypeScript, React, TanStack Query, Redux, Feature-Sliced, RTL, Storybook, Python, Flask, Django, PostgreSQL}
 
+	\IfStrEq{\noTutor}{true}{}{
 	\header{\strHeaderBootcamp}{2019 -- 2021}
 	\subheader{\strRoleBootcamp}{\strLocBootcamp}
 	\begin{itemize}
@@ -121,6 +128,7 @@
 		\item \strBootcampBTwo
 	\end{itemize}
 	\tech{TypeScript, React, MUI, Node.js, Express, Gatsby, Next.js, GraphQL, Prisma, MongoDB, PostgreSQL}
+	}
 
 	\header{\strHeaderFinancial}{2013 -- 2019}
 	\subheader{\strRoleFinancial}{\strLocFinancial}

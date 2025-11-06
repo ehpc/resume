@@ -41,6 +41,7 @@ jobs:
           lualatex -interaction=nonstopmode -halt-on-error -jobname="Eugene-Maslovich-resume-en" '\def\resumeLang{en}\input{resume.tex}'
           lualatex -interaction=nonstopmode -halt-on-error -jobname="Evgenii-Maslovich-resume-ru" '\def\resumeLang{ru}\input{resume.tex}'
           lualatex -interaction=nonstopmode -halt-on-error -jobname="Eugene-Maslovitch-resume-fr" '\def\resumeLang{fr}\input{resume.tex}'
+          lualatex -interaction=nonstopmode -halt-on-error -jobname="Evgenii-Maslovich-resume-ru-nt" '\def\resumeLang{ru}\def\customSpacing{wide}\def\noTutor{true}\input{resume.tex}'
 
       # Optional: keep as build artifact too (handy for debugging)
       - name: Upload build artifacts
@@ -51,6 +52,7 @@ jobs:
             Eugene-Maslovich-resume-en.pdf
             Evgenii-Maslovich-resume-ru.pdf
             Eugene-Maslovitch-resume-fr.pdf
+            Evgenii-Maslovich-resume-ru-nt.pdf
 
       - name: Compute timestamp
         id: ts
@@ -67,10 +69,12 @@ jobs:
             - EN: Eugene-Maslovich-resume-en.pdf
             - RU: Evgenii-Maslovich-resume-ru.pdf
             - FR: Eugene-Maslovitch-resume-fr.pdf
+            - RU (nt): Evgenii-Maslovich-resume-ru-nt.pdf
           artifacts: |
             Eugene-Maslovich-resume-en.pdf,
             Evgenii-Maslovich-resume-ru.pdf,
-            Eugene-Maslovitch-resume-fr.pdf
+            Eugene-Maslovitch-resume-fr.pdf,
+            Evgenii-Maslovich-resume-ru-nt.pdf,
           allowUpdates: true
           replacesArtifacts: true
           makeLatest: true
